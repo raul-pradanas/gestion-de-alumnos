@@ -1,30 +1,59 @@
-<div class="example-container mat-elevation-z8">
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+<main class="example-container">
   <mat-table #table [dataSource]="dataSource">
-    <!-- Position Column -->
+    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Lastname1 Column -->
     <ng-container matColumnDef="lastname1">
       <mat-header-cell *matHeaderCellDef> Primer apellido </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{ user.lastname1 }} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Lastname2 Column -->
     <ng-container matColumnDef="lastname2">
       <mat-header-cell *matHeaderCellDef> Segundo apellido </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{ user.lastname2 }} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Dni Column -->
     <ng-container matColumnDef="dni">
       <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.symbol }} </mat-cell>
+      <mat-cell *matCellDef="let user"> {{ user.dni }} </mat-cell>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{ user.email }} </mat-cell>
+    </ng-container>
+
+    <!-- Button Column -->
+    <ng-container matColumnDef="buttonOptions">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let user"> 
+        <button mat-icon-button value={{user.dni}} color="primary" aria-label="Example icon button with a delete icon" (click)="deleteUser(user.dni)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button value={{user.dni}} color="primary" aria-label="Example icon button with a delete icon" (click)="openProfile(user.dni)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-</div>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic users">
+  </mat-paginator>
+</main>

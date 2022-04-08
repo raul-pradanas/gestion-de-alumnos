@@ -9,31 +9,24 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './components/user/user.component';
-import {MatTableModule} from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserListComponent
-  ],
+  declarations: [UserComponent, UserListComponent, UserProfileComponent],
   imports: [
     CommonModule,
-    MatExpansionModule,
-    MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
     MatTableModule,
-    MatPaginator,
-
+    MatPaginatorModule
   ],
-  exports: [
-    UserComponent,
-    UserListComponent
-  ],
+  exports: [UserComponent, UserListComponent],
 })
-export class UserModule{}
+export class UserModule {}

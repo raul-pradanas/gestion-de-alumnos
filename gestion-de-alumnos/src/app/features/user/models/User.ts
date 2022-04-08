@@ -4,13 +4,15 @@ export class User {
     private _lastname1:string;
     private _lastname2:string;
     private _email:string;
+    private _dni:string;
     //private _password:string;
   
-    constructor(name:string, lastname1:string, lastname2:string, email:string,){
+    constructor(name:string, lastname1:string, lastname2:string, email:string, dni:string){
       this._name = name;
       this._lastname1 = lastname1;
-      this._lastname2 = lastname1;
+      this._lastname2 = lastname2;
       this._email = email;
+      this._dni = dni;
     }
   
     get name():string{
@@ -27,6 +29,10 @@ export class User {
   
     get email():string{
       return this._email;
+    }
+
+    get dni():string{
+      return this._dni;
     }
     
   }
