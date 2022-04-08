@@ -1,0 +1,161 @@
+<div class="divForm">
+  <div>
+    <h1>
+      <mat-icon aria-hidden="false" aria-label="Example home icon"
+        >people</mat-icon
+      >
+      Dar de alta a un alumno
+    </h1>
+  </div>
+
+  <form [formGroup]="formCreateUser">
+    <div class="divDataUser">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Raúl" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Primer apellido</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="lastname1"
+          placeholder="Pradanas"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Segundo apellido</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="lastname2"
+          placeholder="Martín"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="raul@gmail.com"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="dni"
+          placeholder="54002937H"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="divDataUser">
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="phone"
+          placeholder="685584362"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Otro teléfono</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="anotherPhone"
+          placeholder="918851038"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>País</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="country"
+          placeholder="España"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="province"
+          placeholder="Madrid"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Código Postal</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="postalCode"
+          placeholder="28890"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="divDataUser">
+      <mat-form-field appearance="fill">
+        <mat-label>Localidad</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="locality"
+          placeholder="Loeches"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nickname</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="nickname"
+          placeholder="RaulP10"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="password"
+          placeholder="**********"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Repite la contraseña</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="repeatPassword"
+          placeholder="**********"
+        />
+      </mat-form-field>
+    </div>
+
+    <button
+      class="margin"
+      mat-raised-button
+      color="primary"
+      (click)="addUser()"
+    >
+      +
+    </button>
+  </form>
+</div>

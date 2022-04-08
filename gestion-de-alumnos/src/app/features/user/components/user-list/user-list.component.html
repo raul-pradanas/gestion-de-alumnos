@@ -1,0 +1,30 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.position }} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastname1">
+      <mat-header-cell *matHeaderCellDef> Primer apellido </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastname2">
+      <mat-header-cell *matHeaderCellDef> Segundo apellido </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.weight }} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dni">
+      <mat-header-cell *matHeaderCellDef> DNI </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.symbol }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
