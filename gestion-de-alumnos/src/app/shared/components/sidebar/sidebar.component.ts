@@ -9,8 +9,8 @@ import { Window } from '../../models/Window';
 export class SidebarComponent implements OnInit {
 
   windows: Window[] = [
-    { icon: "people", name: "Users", url: '/users' },
-    { icon: "backup", name: "ViewUsers", url: '/viewUsers' },
+    { icon: "backup", name: "Añadir usuarios", url: '/users' },
+    { icon: "people", name: "Usuarios", url: '/viewUsers' },
   ];
 
   constructor() { }

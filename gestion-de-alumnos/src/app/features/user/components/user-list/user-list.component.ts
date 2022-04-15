@@ -25,11 +25,19 @@ export class UserListComponent{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deleteUser(dni:string){
-    console.log(dni);
+  deleteUser(user:User){
+    const oldData = this.userServ.getUsers() || [];
+    if(oldData.indexOf(user)<0){
+      oldData.splice(0,1);
+    }
+    else{
+      oldData.splice(oldData.indexOf(user),1);
+    }
+    
+    localStorage.setItem('Alumnos', JSON.stringify(oldData));
   }
 
-  openProfile(dni:string){
-    
+  openProfile(user:User){
+    console.log(user);
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <h1>
       <mat-icon aria-hidden="false" aria-label="Example home icon"
-        >people</mat-icon
+        >backup</mat-icon
       >
       Dar de alta a un alumno
     </h1>
@@ -84,7 +84,13 @@
           matInput
           formControlName="country"
           placeholder="España"
+          [matAutocomplete]="auto"
         />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
