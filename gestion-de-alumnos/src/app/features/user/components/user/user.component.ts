@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 
@@ -51,7 +50,6 @@ export class UserComponent implements OnInit {
         Validators.maxLength(15),
       ]),
       lastname2: new FormControl('', [
-        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
@@ -62,12 +60,12 @@ export class UserComponent implements OnInit {
       ]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{9}$'),
+        Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
       anotherPhone: new FormControl('', [
-        Validators.pattern('^[0-9]{9}$'),
+        Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
@@ -85,11 +83,11 @@ export class UserComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
       ]),
       repeatPassword: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(6),
       ]),
     });
   }

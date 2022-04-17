@@ -10,8 +10,12 @@ export class UserService {
   
   constructor() { }
 
-  getUser(): User| undefined{
+  getUser(): User{
     return this.user;
+  }
+
+  setUser(nUser:User) : void{
+    this.user = nUser;
   }
 
   getUsers(): User[] | undefined{

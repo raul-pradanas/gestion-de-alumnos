@@ -1,7 +1,7 @@
 export class User {
   private _name: string;
   private _lastname1: string;
-  private _lastname2: string;
+  private _lastname2?: string;
   private _email: string;
   private _dni: string;
   private _phone: string;
@@ -49,7 +49,7 @@ export class User {
     return this._lastname1;
   }
 
-  get lastname2(): string {
+  get lastname2(): string | undefined {
     return this._lastname2;
   }
 
@@ -59,5 +59,33 @@ export class User {
 
   get dni(): string {
     return this._dni;
+  }
+
+  get phone(): string{
+    return this._phone;
+  }
+
+  get anotherPhone(): string | undefined{
+    return this._anotherPhone;
+  }
+
+  get country(): string{
+    return this._country;
+  }
+
+  get province(): string{
+    return this._province;
+  }
+
+  get postalCode(): number{
+    return this._postalCode;
+  }
+
+  get locality(): string{
+    return this._locality;
+  }
+
+  get nickname(): string{
+    return this._nickname;
   }
 }
