@@ -40,7 +40,7 @@ export class UserListComponent {
   }
 
   openProfile(user: User) {
-    //this.userServ.setUser(user);
+    this.userServ.setuserProfile(user);
     this.router.navigate(['/userProfile']);
   }
 }

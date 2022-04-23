@@ -16,21 +16,8 @@ import { PostalCodeValidator } from '../../validators/postalCode.validator';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  nUser!: User;
-  user: User = new User(
-    'a',
-    'a',
-    'a',
-    'a@',
-    '1',
-    '6',
-    '',
-    'es',
-    'M',
-    28,
-    'L',
-    'R'
-  );
+  userProfile!: User;
+  
   formProfileUser: FormGroup;
 
   options: string[] = [
@@ -112,7 +99,7 @@ export class UserProfileComponent implements OnInit {
 
       return;
     } else {
-      this.nUser = new User(
+      this.userProfile = new User(
         this.formProfileUser.get('name')?.value,
         this.formProfileUser.get('lastname1')?.value,
         this.formProfileUser.get('lastname2')?.value,
@@ -127,7 +114,7 @@ export class UserProfileComponent implements OnInit {
         this.formProfileUser.get('nickname')?.value
       );
       const oldData = this.userServ.users || [];
-      oldData.push(this.nUser);
+      oldData.push(this.userProfile);
       localStorage.setItem('Alumnos', JSON.stringify(oldData));
     }
   }
