@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
+import { DniValidator } from '../../validators/dni.validator';
+import { PostalCodeValidator } from '../../validators/postalCode.validator';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +17,20 @@ import { UserService } from '../../services/user.service';
 })
 export class UserProfileComponent implements OnInit {
   nUser!: User;
-  user: User = new User("a","a","a","a@","1","6","","es","M",28,"L","R");
+  user: User = new User(
+    'a',
+    'a',
+    'a',
+    'a@',
+    '1',
+    '6',
+    '',
+    'es',
+    'M',
+    28,
+    'L',
+    'R'
+  );
   formProfileUser: FormGroup;
 
   options: string[] = [
@@ -27,46 +42,53 @@ export class UserProfileComponent implements OnInit {
     'Francia',
   ];
 
+  provinces: string[] = [
+    'Comunidad de Madrid',
+    'Castilla la Mancha',
+    'La Rioja',
+    'Cataluña'
+  ]
+
   constructor(public form: FormBuilder, private userServ: UserService) {
     this.formProfileUser = this.form.group({
-      name: new FormControl(this.user.name, [
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      lastname1: new FormControl(this.user.lastname1, [
+      lastname1: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      lastname2: new FormControl(this.user.lastname2, [
+      lastname2: new FormControl('', [
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      email: new FormControl(this.user.email, [Validators.required, Validators.email]),
-      dni: new FormControl(this.user.dni, [
-        Validators.pattern('[0-9]{8}[A-Z]'),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      dni: new FormControl('', [
+        DniValidator.isValidDni(),
         Validators.required,
       ]),
-      phone: new FormControl(this.user.phone, [
+      phone: new FormControl('', [
         Validators.required,
         Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
-      anotherPhone: new FormControl(this.user.anotherPhone, [
+      anotherPhone: new FormControl('', [
         Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
-      country: new FormControl(this.user.country, [Validators.required]),
-      province: new FormControl(this.user.province, [Validators.required]),
-      postalCode: new FormControl(this.user.postalCode, [
+      country: new FormControl('', [Validators.required]),
+      province: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [
+        PostalCodeValidator.validatePostalCode(),
         Validators.required,
-        Validators.pattern('[0-9]{5}'),
       ]),
-      locality: new FormControl(this.user.locality, [Validators.required]),
-      nickname: new FormControl(this.user.nickname, [
+      locality: new FormControl('', [Validators.required]),
+      nickname: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
@@ -82,8 +104,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeProfileUser() {
     if (!this.formProfileUser.valid) {
@@ -105,7 +126,7 @@ export class UserProfileComponent implements OnInit {
         this.formProfileUser.get('locality')?.value,
         this.formProfileUser.get('nickname')?.value
       );
-      const oldData = this.userServ.getUsers() || [];
+      const oldData = this.userServ.users || [];
       oldData.push(this.nUser);
       localStorage.setItem('Alumnos', JSON.stringify(oldData));
     }

@@ -20,9 +20,12 @@ export class UserListComponent {
     'buttonOptions',
   ];
 
-  dataSource = new MatTableDataSource<User>(this.userServ.getUsers());
+  users!: User[];
+  dataSource = new MatTableDataSource<User>(this.userServ.users);
 
-  constructor(private userServ: UserService, private router:Router) {}
+  constructor(private userServ: UserService, private router:Router) {
+    this.users = this.userServ.users;
+  }
 
   ngAfterViewInit() {}
 
@@ -32,18 +35,12 @@ export class UserListComponent {
   }
 
   deleteUser(user: User) {
-    const oldData = this.userServ.getUsers() || [];
-    if (oldData.indexOf(user) < 0) {
-      oldData.splice(0, 1);
-    } else {
-      oldData.splice(oldData.indexOf(user), 1);
-    }
-    
-    localStorage.setItem('Alumnos', JSON.stringify(oldData));
+    this.users = this.userServ.deleteUser(user);
+    this.dataSource = new MatTableDataSource<User>(this.users);
   }
 
   openProfile(user: User) {
-    this.userServ.setUser(user);
+    //this.userServ.setUser(user);
     this.router.navigate(['/userProfile']);
   }
 }

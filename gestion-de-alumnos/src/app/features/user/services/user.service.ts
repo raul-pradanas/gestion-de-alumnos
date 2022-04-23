@@ -2,27 +2,22 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  _users!: User[];
 
-  user! : User;
-  
-  constructor() { }
-
-  getUser(): User{
-    return this.user;
+  constructor() {
+    this._users = JSON.parse(localStorage.getItem('Alumnos')!!);
   }
 
-  setUser(nUser:User) : void{
-    this.user = nUser;
+  get users(): User[] {
+    return this._users;
   }
 
-  getUsers(): User[] | undefined{
-    return JSON.parse(localStorage.getItem('Alumnos')!!);
-  }
-
-  deleteUser():void {
-    
+  deleteUser(user:User): User[] {
+    this.users.splice(this.users.indexOf(user),1);
+    localStorage.setItem('Alumnos', JSON.stringify(this.users));
+    return this.users;
   }
 }

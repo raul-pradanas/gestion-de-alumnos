@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserComponent } from './components/user/user.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [UserComponent, UserListComponent, UserProfileComponent],
@@ -29,7 +30,9 @@ import { UserComponent } from './components/user/user.component';
     MatTableModule,
     MatPaginatorModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
+    
     
   ],
   exports: [UserComponent, UserListComponent],
