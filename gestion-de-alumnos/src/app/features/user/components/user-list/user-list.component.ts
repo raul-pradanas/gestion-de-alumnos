@@ -1,5 +1,4 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from '../../models/User';
@@ -40,7 +39,7 @@ export class UserListComponent {
   }
 
   openProfile(user: User) {
-    this.userServ.setuserProfile(user);
+    this.userServ.setUserProfile(user);
     this.router.navigate(['/userProfile']);
   }
 }

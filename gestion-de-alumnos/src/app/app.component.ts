@@ -24,33 +24,33 @@ export class AppComponent implements OnInit {
     JSON.stringify(
       [
       {
-        _name: 'Raúl',
-        _lastname1: 'Pradanas',
-        _lastname2: 'Martin',
-        _email: 'r@gmail.com',
-        _dni: '54002937H',
-        _phone: '685584362',
-        _anotherPhone:'609989472',
-        _country: 'España',
-        _province: 'Madrid',
-        _postalCode: 28890,
-        _locality: 'Loeches',
-        _nickname: 'RaulP10'
+        name: 'Raúl',
+        lastname1: 'Pradanas',
+        lastname2: 'Martin',
+        email: 'r@gmail.com',
+        dni: '54002937H',
+        phone: '685584362',
+        anotherPhone:'609989472',
+        country: 'España',
+        province: 'Madrid',
+        postalCode: 28890,
+        locality: 'Loeches',
+        nickname: 'RaulP10'
 
       },
       {
-        _name: 'Adrián',
-        _lastname1: 'Martín',
-        _lastname2: 'Benito',
-        _email: 'a@gmail.com',
-        _dni: '54002937L',
-        _phone: '685584362',
-        _anotherPhone:'609989472',
-        _country: 'España',
-        _province: 'Madrid',
-        _postalCode: 28890,
-        _locality: 'Loeches',
-        _nickname: 'ADRI'
+        name: 'Adrián',
+        lastname1: 'Martín',
+        lastname2: 'Benito',
+        email: 'a@gmail.com',
+        dni: '54002937L',
+        phone: '685584362',
+        anotherPhone:'609989472',
+        country: 'España',
+        province: 'Madrid',
+        postalCode: 28890,
+        locality: 'Loeches',
+        nickname: 'ADRI'
       },
     ]));
   }

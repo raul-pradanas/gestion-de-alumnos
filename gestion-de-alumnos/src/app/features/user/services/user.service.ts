@@ -5,8 +5,8 @@ import { User } from '../models/User';
   providedIn: 'root',
 })
 export class UserService {
-  _users!: User[];
-  _userProfile!: User;
+  private _users!: User[];
+  private _userProfile!: User;
 
   constructor() {
     this._users = JSON.parse(localStorage.getItem('Alumnos')!!);
@@ -16,13 +16,12 @@ export class UserService {
     return this._users;
   }
 
-  get userProfile(): User {
+  getUserProfile(): User {
     return this._userProfile;
   }
 
-  setuserProfile(user:User): void {
+  setUserProfile(user:User): void {
     this._userProfile = user;
-    console.log(this._userProfile);
   }
 
   deleteUser(user:User): User[] {

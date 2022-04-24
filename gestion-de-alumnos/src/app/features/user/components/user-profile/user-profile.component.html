@@ -12,7 +12,7 @@
     <div class="divDataUser">
       <mat-form-field appearance="fill">
         <mat-label>Nombre</mat-label>
-        <input type="text" matInput formControlName="name"/>
+        <input type="text" matInput formControlName="name" />
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -64,7 +64,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <ng-container *ngIf= "country.value === 'España' ">
+      <ng-container *ngIf="country.value === 'España'">
         <mat-form-field appearance="fill">
           <mat-label>Provincia</mat-label>
           <input
@@ -83,7 +83,7 @@
         </mat-form-field>
       </ng-container>
 
-      <ng-container *ngIf= "country.value !== 'España' ">
+      <ng-container *ngIf="country.value !== 'España'">
         <mat-form-field appearance="fill">
           <mat-label>Provincia</mat-label>
           <input
@@ -128,11 +128,12 @@
           placeholder="**********"
         />
       </mat-form-field>
-      <app-strength-bar [controller]="formProfileUser.get('password')"></app-strength-bar>
       <button class="margin" mat-raised-button color="primary">
         Actualizar
       </button>
-      
+      <app-strength-bar
+        [controller]="formProfileUser.get('password')"
+      ></app-strength-bar>
     </div>
 
     <button

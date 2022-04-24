@@ -32,11 +32,11 @@ export class UserProfileComponent implements OnInit {
     'Comunidad de Madrid',
     'Castilla la Mancha',
     'La Rioja',
-    'Cataluña'
-  ]
+    'Cataluña',
+  ];
 
   constructor(public form: FormBuilder, private userServ: UserService) {
-    this.userProfile = this.userServ.userProfile;
+    this.userProfile = this.userServ.getUserProfile();
     this.formProfileUser = this.form.group({
       name: new FormControl(this.userProfile.name, [
         Validators.required,
@@ -52,7 +52,10 @@ export class UserProfileComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      email: new FormControl(this.userProfile.email, [Validators.required, Validators.email]),
+      email: new FormControl(this.userProfile.email, [
+        Validators.required,
+        Validators.email,
+      ]),
       dni: new FormControl(this.userProfile.dni, [
         DniValidator.isValidDni(),
         Validators.required,
@@ -69,12 +72,16 @@ export class UserProfileComponent implements OnInit {
         Validators.maxLength(9),
       ]),
       country: new FormControl(this.userProfile.country, [Validators.required]),
-      province: new FormControl(this.userProfile.province, [Validators.required]),
-      postalCode: new FormControl('', [
+      province: new FormControl(this.userProfile.province, [
+        Validators.required,
+      ]),
+      postalCode: new FormControl(this.userProfile.postalCode.toString(), [
         PostalCodeValidator.validatePostalCode(),
         Validators.required,
       ]),
-      locality: new FormControl(this.userProfile.locality, [Validators.required]),
+      locality: new FormControl(this.userProfile.locality, [
+        Validators.required,
+      ]),
       nickname: new FormControl(this.userProfile.nickname, [
         Validators.required,
         Validators.minLength(3),
