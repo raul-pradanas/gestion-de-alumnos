@@ -29,4 +29,15 @@ export class UserService {
     localStorage.setItem('Alumnos', JSON.stringify(this.users));
     return this.users;
   }
+
+  userExist(user:User){
+    return this._users.find(userExist => {
+      if(userExist.dni === user.dni){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+  }
 }

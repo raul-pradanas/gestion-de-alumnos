@@ -134,10 +134,9 @@ export class UserComponent implements OnInit {
       );
       const oldData = this.userServ.users || [];
 
-      if (oldData.includes(this.nUser)) {
+      if (this.userServ.userExist(this.nUser)) {
         alert('El usuario ya existe');
       } else {
-        oldData.push(this.nUser);
         localStorage.setItem('Alumnos', JSON.stringify(oldData));
         console.log(localStorage.getItem('Alumnos'));
       }

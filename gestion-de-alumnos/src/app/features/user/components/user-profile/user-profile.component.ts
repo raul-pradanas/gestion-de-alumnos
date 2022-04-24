@@ -88,11 +88,9 @@ export class UserProfileComponent implements OnInit {
         Validators.maxLength(15),
       ]),
       password: new FormControl('', [
-        Validators.required,
         Validators.minLength(6),
       ]),
       repeatPassword: new FormControl('', [
-        Validators.required,
         Validators.minLength(6),
       ]),
     });
@@ -106,7 +104,9 @@ export class UserProfileComponent implements OnInit {
 
       return;
     } else {
-      this.userProfile = new User(
+      
+
+      let newUserProfile = new User(
         this.formProfileUser.get('name')?.value,
         this.formProfileUser.get('lastname1')?.value,
         this.formProfileUser.get('lastname2')?.value,
@@ -120,12 +120,13 @@ export class UserProfileComponent implements OnInit {
         this.formProfileUser.get('locality')?.value,
         this.formProfileUser.get('nickname')?.value
       );
-      const oldData = this.userServ.users || [];
 
-      if (oldData.includes(this.userProfile)) {
+      if (this.userServ.userExist(newUserProfile)) {
         alert('El usuario ya existe');
       } else {
-        oldData.push(this.userProfile);
+        const oldData = this.userServ.users || [];
+        oldData.splice(oldData.indexOf(this.userProfile), 1);
+        oldData.push(newUserProfile);
         localStorage.setItem('Alumnos', JSON.stringify(oldData));
         console.log(localStorage.getItem('Alumnos'));
       }
