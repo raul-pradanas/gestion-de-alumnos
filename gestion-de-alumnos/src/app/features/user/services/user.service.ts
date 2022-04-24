@@ -22,6 +22,7 @@ export class UserService {
 
   setuserProfile(user:User): void {
     this._userProfile = user;
+    console.log(this._userProfile);
   }
 
   deleteUser(user:User): User[] {

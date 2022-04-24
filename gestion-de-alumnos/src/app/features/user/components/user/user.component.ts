@@ -45,8 +45,8 @@ export class UserComponent implements OnInit {
     'Comunidad de Madrid',
     'Castilla la Mancha',
     'La Rioja',
-    'Cataluña'
-  ]
+    'Cataluña',
+  ];
 
   constructor(public form: FormBuilder, private userServ: UserService) {
     this.formCreateUser = this.form.group({
@@ -133,9 +133,14 @@ export class UserComponent implements OnInit {
         this.formCreateUser.get('nickname')?.value
       );
       const oldData = this.userServ.users || [];
-      oldData.push(this.nUser);
-      localStorage.setItem('Alumnos', JSON.stringify(oldData));
-      console.log(localStorage.getItem('Alumnos'));
+
+      if (oldData.includes(this.nUser)) {
+        alert('El usuario ya existe');
+      } else {
+        oldData.push(this.nUser);
+        localStorage.setItem('Alumnos', JSON.stringify(oldData));
+        console.log(localStorage.getItem('Alumnos'));
+      }
     }
   }
 }

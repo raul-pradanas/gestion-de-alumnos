@@ -152,15 +152,19 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="password"
-          placeholder="**********"
-        />
-      </mat-form-field>
+      <div class="divPass">
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="**********"
+          />
+        </mat-form-field>
+        <app-strength-bar [controller]="formCreateUser.get('password')"></app-strength-bar>
+      </div>
+      
       <mat-form-field appearance="fill">
         <mat-label>Repite la contraseña</mat-label>
         <input

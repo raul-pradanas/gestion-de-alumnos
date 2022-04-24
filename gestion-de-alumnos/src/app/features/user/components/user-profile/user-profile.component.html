@@ -116,25 +116,6 @@
         <mat-label>Nickname</mat-label>
         <input type="text" matInput formControlName="nickname" />
       </mat-form-field>
-
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="password"
-          placeholder="**********"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Repite la contraseña</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="repeatPassword"
-          placeholder="**********"
-        />
-      </mat-form-field> -->
     </div>
 
     <div class="divDataUser">
@@ -147,9 +128,11 @@
           placeholder="**********"
         />
       </mat-form-field>
+      <app-strength-bar [controller]="formProfileUser.get('password')"></app-strength-bar>
       <button class="margin" mat-raised-button color="primary">
         Actualizar
       </button>
+      
     </div>
 
     <button

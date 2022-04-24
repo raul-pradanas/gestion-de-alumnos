@@ -17,7 +17,6 @@ import { PostalCodeValidator } from '../../validators/postalCode.validator';
 })
 export class UserProfileComponent implements OnInit {
   userProfile!: User;
-  
   formProfileUser: FormGroup;
 
   options: string[] = [
@@ -37,45 +36,46 @@ export class UserProfileComponent implements OnInit {
   ]
 
   constructor(public form: FormBuilder, private userServ: UserService) {
+    this.userProfile = this.userServ.userProfile;
     this.formProfileUser = this.form.group({
-      name: new FormControl('', [
+      name: new FormControl(this.userProfile.name, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      lastname1: new FormControl('', [
+      lastname1: new FormControl(this.userProfile.lastname1, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      lastname2: new FormControl('', [
+      lastname2: new FormControl(this.userProfile.lastname2, [
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      dni: new FormControl('', [
+      email: new FormControl(this.userProfile.email, [Validators.required, Validators.email]),
+      dni: new FormControl(this.userProfile.dni, [
         DniValidator.isValidDni(),
         Validators.required,
       ]),
-      phone: new FormControl('', [
+      phone: new FormControl(this.userProfile.phone, [
         Validators.required,
         Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
-      anotherPhone: new FormControl('', [
+      anotherPhone: new FormControl(this.userProfile.anotherPhone, [
         Validators.pattern('[6][0-9]{8}$'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
-      country: new FormControl('', [Validators.required]),
-      province: new FormControl('', [Validators.required]),
+      country: new FormControl(this.userProfile.country, [Validators.required]),
+      province: new FormControl(this.userProfile.province, [Validators.required]),
       postalCode: new FormControl('', [
         PostalCodeValidator.validatePostalCode(),
         Validators.required,
       ]),
-      locality: new FormControl('', [Validators.required]),
-      nickname: new FormControl('', [
+      locality: new FormControl(this.userProfile.locality, [Validators.required]),
+      nickname: new FormControl(this.userProfile.nickname, [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
@@ -114,8 +114,14 @@ export class UserProfileComponent implements OnInit {
         this.formProfileUser.get('nickname')?.value
       );
       const oldData = this.userServ.users || [];
-      oldData.push(this.userProfile);
-      localStorage.setItem('Alumnos', JSON.stringify(oldData));
+
+      if (oldData.includes(this.userProfile)) {
+        alert('El usuario ya existe');
+      } else {
+        oldData.push(this.userProfile);
+        localStorage.setItem('Alumnos', JSON.stringify(oldData));
+        console.log(localStorage.getItem('Alumnos'));
+      }
     }
   }
 }
