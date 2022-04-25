@@ -137,6 +137,7 @@ export class UserComponent implements OnInit {
       if (this.userServ.userExist(this.nUser)) {
         alert('El usuario ya existe');
       } else {
+        this.userServ.users.push(this.nUser);
         localStorage.setItem('Alumnos', JSON.stringify(oldData));
         console.log(localStorage.getItem('Alumnos'));
       }

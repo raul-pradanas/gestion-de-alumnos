@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   introducirDatos(): void {
-    localStorage.setItem('Alumnos', 
+    localStorage.setItem('Alumnos',
     JSON.stringify(
       [
       {
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
         lastname1: 'Pradanas',
         lastname2: 'Martin',
         email: 'r@gmail.com',
-        dni: '54002937H',
+        dni: '54002937Z',
         phone: '685584362',
         anotherPhone:'609989472',
         country: 'España',

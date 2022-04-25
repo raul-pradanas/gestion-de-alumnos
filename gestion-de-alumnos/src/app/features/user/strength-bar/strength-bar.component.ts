@@ -123,14 +123,21 @@ export class StrengthBarComponent implements OnInit {
           this.security += 2;
         } else if (password.length > 12) {
           this.security += 3;
-        } else if (/[0-9]/.test(password)) {
+        }
+        if (/[0-9]/.test(password)) {
           this.security += 1;
-        } else if (/@_-.()*/.test(password)) {
-          this.security += 2;
-        } else if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
-          this.security += 2;
-        } else if (/[a-zA-Z]/.test(password)) {
+        }
+        if (/[a-zA-Z]/.test(password)) {
           this.security += 1;
+        }
+        if (/[$&+,:;=?@#|'<>.-^*()%!]/.test(password)) {
+          this.security += 2;
+        }
+        if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
+          this.security += 2;
+        }
+        if (/[0-9]/.test(password) && /[a-zA-Z]/.test(password) && /[$&+,:;=?@#|'<>.-^*()%!]/.test(password) && /[A-Z]/.test(password) && /[a-z]/.test(password)){
+          this.security +=1;
         }
 
         if (this.security > 0 && this.security <= 2) {
@@ -154,7 +161,6 @@ export class StrengthBarComponent implements OnInit {
           this.message = this.OPTIONS.soStrong.message;
           this.styles = this.OPTIONS.soStrong.styles;
         }
-        console.log(this.security);
       });
     }
   }

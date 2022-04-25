@@ -120,7 +120,6 @@ export class UserProfileComponent implements OnInit {
         oldData.splice(oldData.indexOf(this.userProfile), 1);
         oldData.push(newUserProfile);
         localStorage.setItem('Alumnos', JSON.stringify(oldData));
-        console.log(localStorage.getItem('Alumnos'));
       } else {
         alert('Ya hay un usuario con ese dni');
       }
