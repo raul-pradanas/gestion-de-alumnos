@@ -115,7 +115,7 @@ export class UserProfileComponent implements OnInit {
         this.formProfileUser.get('nickname')?.value
       );
 
-      if (this.userServ.userExist(newUserProfile)) {
+      if (!this.userServ.userExist(newUserProfile)) {
         const oldData = this.userServ.users || [];
         oldData.splice(oldData.indexOf(this.userProfile), 1);
         oldData.push(newUserProfile);
