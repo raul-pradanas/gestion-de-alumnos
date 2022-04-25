@@ -71,7 +71,7 @@ export class UserComponent implements OnInit {
       ]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.pattern('[6][0-9]{8}$'),
+        Validators.pattern('(6|7)[ -]*([0-9][ -]*){8}'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),

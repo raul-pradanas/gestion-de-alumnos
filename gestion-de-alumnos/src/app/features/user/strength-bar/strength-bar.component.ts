@@ -117,23 +117,23 @@ export class StrengthBarComponent implements OnInit {
           this.color = this.OPTIONS.minLength.color;
           this.message = this.OPTIONS.minLength.message;
           this.styles = this.OPTIONS.minLength.styles;
-        } else if (password.length > 6 && password.length <= 8) {
+        } else if (password.length >= 6 && password.length <= 8) {
           this.security += 1;
         } else if (password.length > 8 && password.length <= 12) {
           this.security += 2;
         } else if (password.length > 12) {
           this.security += 3;
-        } else if (/\d/.test(password)) {
+        } else if (/[0-9]/.test(password)) {
           this.security += 1;
         } else if (/@_-.()*/.test(password)) {
           this.security += 2;
-        } else if (/[^A-Z]/.test(password) && /[^a-z]/.test(password)) {
+        } else if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
           this.security += 2;
-        } else if (/[^A-Za-z]/.test(password)) {
+        } else if (/[a-zA-Z]/.test(password)) {
           this.security += 1;
         }
 
-        if (this.security <= 2) {
+        if (this.security > 0 && this.security <= 2) {
           this.color = this.OPTIONS.soWeak.color;
           this.message = this.OPTIONS.soWeak.message;
           this.styles = this.OPTIONS.soWeak.styles;

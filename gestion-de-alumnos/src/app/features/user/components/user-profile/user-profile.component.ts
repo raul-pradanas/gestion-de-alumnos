@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
         Validators.maxLength(9),
       ]),
       anotherPhone: new FormControl(this.userProfile.anotherPhone, [
-        Validators.pattern('[6][0-9]{8}$'),
+        Validators.pattern('(6|7)[ -]*([0-9][ -]*){8}'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
@@ -87,12 +87,8 @@ export class UserProfileComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
-      password: new FormControl('', [
-        Validators.minLength(6),
-      ]),
-      repeatPassword: new FormControl('', [
-        Validators.minLength(6),
-      ]),
+      password: new FormControl('', [Validators.minLength(6)]),
+      repeatPassword: new FormControl('', [Validators.minLength(6)]),
     });
   }
 
@@ -104,8 +100,6 @@ export class UserProfileComponent implements OnInit {
 
       return;
     } else {
-      
-
       let newUserProfile = new User(
         this.formProfileUser.get('name')?.value,
         this.formProfileUser.get('lastname1')?.value,
@@ -122,13 +116,13 @@ export class UserProfileComponent implements OnInit {
       );
 
       if (this.userServ.userExist(newUserProfile)) {
-        alert('El usuario ya existe');
-      } else {
         const oldData = this.userServ.users || [];
         oldData.splice(oldData.indexOf(this.userProfile), 1);
         oldData.push(newUserProfile);
         localStorage.setItem('Alumnos', JSON.stringify(oldData));
         console.log(localStorage.getItem('Alumnos'));
+      } else {
+        alert('Ya hay un usuario con ese dni');
       }
     }
   }
