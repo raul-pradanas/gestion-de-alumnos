@@ -1,12 +1,11 @@
+import { Province, spanishProvinces } from './../../models/Provinces';
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
-  FormGroup,
-  ValidatorFn,
-  Validators,
+  FormGroup, Validators
 } from '@angular/forms';
+import { SHA3 } from "crypto-js";
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 import { DniValidator } from '../../validators/dni.validator';
@@ -32,6 +31,8 @@ export class UserComponent implements OnInit {
   nUser!: User;
   formCreateUser: FormGroup;
 
+  provinces = spanishProvinces;
+
   options: string[] = [
     'Alemania',
     'Belgica',
@@ -39,13 +40,6 @@ export class UserComponent implements OnInit {
     'Dinamarca',
     'España',
     'Francia',
-  ];
-
-  provinces: string[] = [
-    'Comunidad de Madrid',
-    'Castilla la Mancha',
-    'La Rioja',
-    'Cataluña',
   ];
 
   constructor(public form: FormBuilder, private userServ: UserService) {
@@ -131,6 +125,7 @@ export class UserComponent implements OnInit {
         this.formCreateUser.get('postalCode')?.value,
         this.formCreateUser.get('locality')?.value,
         this.formCreateUser.get('nickname')?.value
+        //CryptoJS.SHA3(this.formCreateUser.get('nickname')?.value)
       );
       const oldData = this.userServ.users || [];
 

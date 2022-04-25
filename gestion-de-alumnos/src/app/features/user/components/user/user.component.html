@@ -101,8 +101,8 @@
             #country
           />
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let province of provinces" [value]="province">
-              {{ province }}
+            <mat-option *ngFor="let province of provinces" [value]="province.name">
+              {{ province.name }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
@@ -164,7 +164,7 @@
         </mat-form-field>
         <app-strength-bar [controller]="formCreateUser.get('password')"></app-strength-bar>
       </div>
-      
+
       <mat-form-field appearance="fill">
         <mat-label>Repite la contraseña</mat-label>
         <input
