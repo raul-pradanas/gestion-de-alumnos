@@ -25,7 +25,8 @@ export class User {
     province: string,
     postalCode: number,
     locality: string,
-    nickname: string
+    nickname: string,
+    //password:string,
   ) {
     this._name = name;
     this._lastname1 = lastname1;
@@ -39,6 +40,7 @@ export class User {
     this._postalCode = postalCode;
     this._locality = locality;
     this._nickname = nickname;
+    //this._password = password;
   }
 
   get name(): string {

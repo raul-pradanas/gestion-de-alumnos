@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
+import { DniValidator } from '../../validators/dni.validator';
+import { PostalCodeValidator } from '../../validators/postalCode.validator';
 
 export interface Countries {
   letter: string;
@@ -37,6 +41,13 @@ export class UserComponent implements OnInit {
     'Francia',
   ];
 
+  provinces: string[] = [
+    'Comunidad de Madrid',
+    'Castilla la Mancha',
+    'La Rioja',
+    'Cataluña',
+  ];
+
   constructor(public form: FormBuilder, private userServ: UserService) {
     this.formCreateUser = this.form.group({
       name: new FormControl('', [
@@ -55,12 +66,12 @@ export class UserComponent implements OnInit {
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       dni: new FormControl('', [
-        Validators.pattern('[0-9]{8}[A-Z]'),
+        DniValidator.isValidDni(),
         Validators.required,
       ]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.pattern('[6][0-9]{8}$'),
+        Validators.pattern('(6|7)[ -]*([0-9][ -]*){8}'),
         Validators.minLength(9),
         Validators.maxLength(9),
       ]),
@@ -72,8 +83,8 @@ export class UserComponent implements OnInit {
       country: new FormControl('', [Validators.required]),
       province: new FormControl('', [Validators.required]),
       postalCode: new FormControl('', [
+        PostalCodeValidator.validatePostalCode(),
         Validators.required,
-        Validators.pattern('[0-9]{5}'),
       ]),
       locality: new FormControl('', [Validators.required]),
       nickname: new FormControl('', [
@@ -121,9 +132,15 @@ export class UserComponent implements OnInit {
         this.formCreateUser.get('locality')?.value,
         this.formCreateUser.get('nickname')?.value
       );
-      const oldData = this.userServ.getUsers() || [];
-      oldData.push(this.nUser);
-      localStorage.setItem('Alumnos', JSON.stringify(oldData));
+      const oldData = this.userServ.users || [];
+
+      if (this.userServ.userExist(this.nUser)) {
+        alert('El usuario ya existe');
+      } else {
+        this.userServ.users.push(this.nUser);
+        localStorage.setItem('Alumnos', JSON.stringify(oldData));
+        console.log(localStorage.getItem('Alumnos'));
+      }
     }
   }
 }

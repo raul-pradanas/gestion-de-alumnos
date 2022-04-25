@@ -1,8 +1,6 @@
 <div class="divForm">
   <div>
-    <h1>
-      Dar de alta a un alumno
-    </h1>
+    <h1>Dar de alta a un alumno</h1>
   </div>
 
   <form [formGroup]="formCreateUser">
@@ -82,6 +80,7 @@
           formControlName="country"
           placeholder="España"
           [matAutocomplete]="auto"
+          #country
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of options" [value]="option">
@@ -90,20 +89,41 @@
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Provincia</mat-label>
-        <input
-          type="text"
-          matInput
-          formControlName="province"
-          placeholder="Madrid"
-        />
-      </mat-form-field>
+      <ng-container *ngIf= "country.value === 'España' ">
+        <mat-form-field appearance="fill">
+          <mat-label>Provincia</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="province"
+            placeholder="Comunidad de Madrid"
+            [matAutocomplete]="auto"
+            #country
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let province of provinces" [value]="province">
+              {{ province }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-container *ngIf= "country.value !== 'España' ">
+        <mat-form-field appearance="fill">
+          <mat-label>Provincia</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="province"
+            placeholder="Provincia"
+          />
+        </mat-form-field>
+      </ng-container>
 
       <mat-form-field appearance="fill">
         <mat-label>Código Postal</mat-label>
         <input
-          type="number"
+          type="text"
           matInput
           formControlName="postalCode"
           placeholder="28890"
@@ -132,15 +152,19 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Contraseña</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="password"
-          placeholder="**********"
-        />
-      </mat-form-field>
+      <div class="divPass">
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="**********"
+          />
+        </mat-form-field>
+        <app-strength-bar [controller]="formCreateUser.get('password')"></app-strength-bar>
+      </div>
+      
       <mat-form-field appearance="fill">
         <mat-label>Repite la contraseña</mat-label>
         <input
